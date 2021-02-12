@@ -17,7 +17,7 @@
 TARGET_TEGRA_VARIANT    ?= common
 
 TARGET_TEGRA_AUDIO    ?= nvaudio
-TARGET_TEGRA_BT       ?= bcm
+TARGET_TEGRA_BT       ?= btlinux
 TARGET_TEGRA_CAMERA   ?= nvcamera
 TARGET_TEGRA_CEC      ?= aosp
 TARGET_TEGRA_KERNEL   ?= 4.9
@@ -95,6 +95,12 @@ PRODUCT_PACKAGES += \
     audio_policy_configuration.xml \
     nvaudio_conf.xml \
     nvaudio_fx.xml
+endif
+
+# Bluetooth
+ifeq ($(TARGET_TEGRA_BT),btlinux)
+PRODUCT_PACKAGES += \
+    nx_bt.rc
 endif
 
 # Joycons
