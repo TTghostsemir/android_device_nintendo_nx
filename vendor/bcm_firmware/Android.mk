@@ -46,10 +46,37 @@ LOCAL_MODULE_OWNER         := nintendo
 include $(BUILD_SYSTEM)/base_rules.mk
 
 include $(CLEAR_VARS)
-LOCAL_MODULE               := brcmfmac4356-pcie.nintendo,icosa.txt
+LOCAL_MODULE               := brcmfmac4356-pcie.nvidia,odin.txt
 LOCAL_SRC_FILES            := $(NX_BCM_PATH)/brcmfmac4356A3-pcie.txt
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
 LOCAL_MODULE_TAGS          := optional
-LOCAL_MODULE_OWNER         := nintendo
-include $(BUILD_PREBUILT)
+LOCAL_MODULE_OWNER         := nvidia
+include $(BUILD_NVIDIA_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := brcmfmac4356-pcie.nvidia,modin.txt
+LOCAL_SRC_FILES            := $(NX_BCM_PATH)/brcmfmac4356A3-pcie.txt
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
+LOCAL_MODULE_TAGS          := optional
+LOCAL_MODULE_OWNER         := nvidia
+include $(BUILD_NVIDIA_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := brcmfmac4356-pcie.nvidia,vali.txt
+LOCAL_SRC_FILES            := $(NX_BCM_PATH)/brcmfmac4356A3-pcie.txt
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
+LOCAL_MODULE_TAGS          := optional
+LOCAL_MODULE_OWNER         := nvidia
+include $(BUILD_NVIDIA_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := brcmfmac4356-pcie.nvidia,frig.txt
+LOCAL_SRC_FILES            := $(NX_BCM_PATH)/brcmfmac4356A3-pcie.txt
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
+LOCAL_MODULE_TAGS          := optional
+LOCAL_MODULE_OWNER         := nvidia
+include $(BUILD_NVIDIA_PREBUILT)
