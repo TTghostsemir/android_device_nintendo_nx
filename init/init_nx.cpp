@@ -61,17 +61,20 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 
 void vendor_load_properties()
 {
-       //                                             device    name     model          id     sku api dpi
-       std::vector<tegra_init::devices> devices = { { "nx",     "odin",  "Switch",      0x494E, 1, 27, 240 },
-                                                    { "nx",     "modin", "Switch v2",   0x494F, 1, 27, 240 },
-                                                    { "nx",     "vail",  "Switch Lite", 0x4C49, 2, 27, 240 },
-                                                    { "nx",     "frig",  "Switch OLED", 0x4947, 3, 27, 240 } };
+    //                                             device    name     model          id     sku api dpi
+    std::vector<tegra_init::devices> devices = { { "nx",     "odin",  "Switch",      0x494E, 1, 27, 240 },
+                                                 { "nx",     "modin", "Switch v2",   0x494F, 1, 27, 240 },
+                                                 { "nx",     "vail",  "Switch Lite", 0x4C49, 2, 27, 240 },
+                                                 { "nx",     "frig",  "Switch OLED", 0x4947, 3, 27, 240 } };
 
-        // NOTE: modin has same board id as odin, but we bumped by 0x00000001 to keep id's unique for dtimg entry indexing
+    // NOTE: modin has same board id as odin, but we bumped by 0x00000001 to keep id's unique for dtimg entry indexing
+
+    tegra_init::build_version tav = { "11", "RQ1A.210105.003", "7825230_3167.5736" };
 
 	tegra_init ti(devices);
 
 	ti.set_properties();
+    ti.set_fingerprints(tav);
 
 	if (ti.recovery_context()) {
 		ti.property_set("ro.product.vendor.model", ti.property_get("ro.product.model"));
