@@ -16,8 +16,4 @@ COMMON_BCM_PATH := device/nvidia/tegra-common/vendor/bcm_firmware
 
 PRODUCT_PACKAGES += \
     BCM4356A3 \
-    brcmfmac4356A3-pcie.bin \
-    brcmfmac4356-pcie.nvidia,odin.txt \
-	brcmfmac4356-pcie.nvidia,modin.txt \
-	brcmfmac4356-pcie.nvidia,vali.txt \
-	brcmfmac4356-pcie.nvidia,frig.txt
+    brcmfmac4356A3-pcie

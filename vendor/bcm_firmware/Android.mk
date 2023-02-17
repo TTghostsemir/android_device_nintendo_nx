@@ -16,67 +16,38 @@ LOCAL_PATH := $(call my-dir)
 FOSTER_BCM_PATH := ../../../../../vendor/nvidia/foster/bcm_firmware
 NX_BCM_PATH := ../../../../../vendor/nintendo/bcm_firmware
 
+# Bluetooth Patchfile
 include $(CLEAR_VARS)
 LOCAL_MODULE        := BCM4356A3
 LOCAL_SRC_FILES     := $(NX_BCM_PATH)/CYW4356A3_001.004.009.0092.0095.bin
 LOCAL_MODULE_SUFFIX := .hcd
 LOCAL_MODULE_CLASS  := ETC
-LOCAL_MODULE_PATH   := $(TARGET_OUT_VENDOR)/firmware/brcm
+LOCAL_MODULE_PATH   := $(TARGET_OUT_VENDOR)/firmware
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_OWNER  := nintendo
 include $(BUILD_PREBUILT)
 
+# WiFi Firmware
 include $(CLEAR_VARS)
-LOCAL_MODULE               := brcmfmac4356A3-pcie.bin
+LOCAL_MODULE               := brcmfmac4356A3-pcie
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)
 
-_brcmfmac4356A3_input         := $(BUILD_TOP)/vendor/nintendo/bcm_firmware/brcmfmac4356A3-pcie.bin
+_brcmfmac4356A3_src           := $(BUILD_TOP)$(abspath $(NX_BCM_PATH))
+_brcmfmac4356A3_input         := $(_brcmfmac4356A3_src)/brcmfmac4356A3-pcie.bin
 _brcmfmac4356A3_intermediates := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
 _brcmfmac4356A3_archive       := $(_brcmfmac4356A3_intermediates)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
 
 $(_brcmfmac4356A3_archive):
 	@mkdir -p $(dir $@)
 	@mkdir -p $(TARGET_OUT_VENDOR)/firmware
-	cp $(_brcmfmac4356A3_input) $(_brcmfmac4356A3_intermediates)
-	cp $(_brcmfmac4356A3_input) $(TARGET_OUT_VENDOR)/firmware/brcmfmac4356-pcie.bin
+	@cp $(_brcmfmac4356A3_input) $(TARGET_OUT_VENDOR)/firmware/brcmfmac4356-pcie.bin
+	@cp $(_brcmfmac4356A3_src)/brcmfmac4356A3-pcie.txt $(TARGET_OUT_VENDOR)/firmware/brcmfmac4356-pcie.nvidia,odin.txt
+	@cp $(_brcmfmac4356A3_src)/brcmfmac4356A3-pcie.txt $(TARGET_OUT_VENDOR)/firmware/brcmfmac4356-pcie.nvidia,modin.txt
+	@cp $(_brcmfmac4356A3_src)/brcmfmac4356A3-pcie.txt $(TARGET_OUT_VENDOR)/firmware/brcmfmac4356-pcie.nvidia,vali.txt
+	@cp $(_brcmfmac4356A3_src)/brcmfmac4356A3-pcie.txt $(TARGET_OUT_VENDOR)/firmware/brcmfmac4356-pcie.nvidia,frig.txt
+	@touch $(_brcmfmac4356A3_archive)
 
 LOCAL_MODULE_TAGS          := optional
 LOCAL_MODULE_OWNER         := nintendo
 include $(BUILD_SYSTEM)/base_rules.mk
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := brcmfmac4356-pcie.nvidia,odin.txt
-LOCAL_SRC_FILES            := $(NX_BCM_PATH)/brcmfmac4356A3-pcie.txt
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
-LOCAL_MODULE_TAGS          := optional
-LOCAL_MODULE_OWNER         := nvidia
-include $(BUILD_NVIDIA_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := brcmfmac4356-pcie.nvidia,modin.txt
-LOCAL_SRC_FILES            := $(NX_BCM_PATH)/brcmfmac4356A3-pcie.txt
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
-LOCAL_MODULE_TAGS          := optional
-LOCAL_MODULE_OWNER         := nvidia
-include $(BUILD_NVIDIA_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := brcmfmac4356-pcie.nvidia,vali.txt
-LOCAL_SRC_FILES            := $(NX_BCM_PATH)/brcmfmac4356A3-pcie.txt
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
-LOCAL_MODULE_TAGS          := optional
-LOCAL_MODULE_OWNER         := nvidia
-include $(BUILD_NVIDIA_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := brcmfmac4356-pcie.nvidia,frig.txt
-LOCAL_SRC_FILES            := $(NX_BCM_PATH)/brcmfmac4356A3-pcie.txt
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
-LOCAL_MODULE_TAGS          := optional
-LOCAL_MODULE_OWNER         := nvidia
-include $(BUILD_NVIDIA_PREBUILT)
